@@ -993,29 +993,25 @@ function addStaticMarker(loc, type) {
 
 function openStaticInfoWindow(marker, loc, type) {
   const typeName = type === 'labcorp' ? 'LabCorp' : 'Quest Diagnostics';
-  const badge = type === 'labcorp' ? 'LC' : 'QD';
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.name + ' ' + loc.addr)}`;
-  const bookUrl = type === 'labcorp'
-    ? 'https://www.labcorp.com/labs-and-appointments/find-a-patient-service-center'
-    : 'https://www.questdiagnostics.com/patient/find-a-lab';
+  const dotColor = type === 'labcorp' ? '#d63031' : '#0984e3';
+  const orderUrl = 'https://portal.dot-physical.net/order';
   const content = `<div class="iw">
     <div class="iw-header">
-      <div class="iw-badge ${type}">${badge}</div>
-      <div>
-        <div class="iw-name">${loc.name}</div>
-        <div class="iw-type">${typeName} · ${loc.state}</div>
-      </div>
+      <span style="width:12px;height:12px;border-radius:50%;background:${dotColor};flex-shrink:0;"></span>
+      <div class="iw-name">${typeName}</div>
     </div>
     <div class="iw-rows">
-      <div class="iw-row"><span class="iw-row-icon">🏢</span><span class="iw-row-val">${loc.addr}</span></div>
-      ${loc.phone ? `<div class="iw-row"><span class="iw-row-icon">📞</span><span class="iw-row-val"><a href="tel:${loc.phone}">${loc.phone}</a></span></div>` : ''}
-      ${loc.hours ? `<div class="iw-row"><span class="iw-row-icon">🕐</span><span class="iw-row-val">${loc.hours}</span></div>` : ''}
-      ${loc.rating ? `<div class="iw-row"><span class="iw-row-icon">⭐</span><span class="iw-row-val">${loc.rating.toFixed(1)} / 5.0</span></div>` : ''}
+      <div class="iw-row"><span class="iw-row-icon">📍</span><span class="iw-row-val">${loc.addr}</span></div>
     </div>
-    <div class="iw-actions">
-      <a href="${mapsUrl}" target="_blank" class="iw-btn iw-btn-primary">Get Directions</a>
-      <a href="${bookUrl}" target="_blank" class="iw-btn iw-btn-secondary">Book Appt</a>
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:9px 11px;font-size:.72rem;color:#92400e;line-height:1.45;margin-bottom:12px;">
+      ⚠️ <strong>Prior Authorization Required</strong> — You must create an order/authorization before visiting this site.
     </div>
+    <div style="font-size:.74rem;font-weight:700;color:#1a1d23;margin-bottom:6px;">Services Available:</div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:14px;">
+      <div style="font-size:.76rem;color:#374151;">✓ DOT Urine Drug Test</div>
+      <div style="font-size:.76rem;color:#374151;">✓ Non-DOT Urine Drug Test</div>
+    </div>
+    <a href="${orderUrl}" target="_blank" style="display:flex;align-items:center;justify-content:center;width:100%;height:38px;border-radius:8px;background:#10b981;color:#fff;font-size:.8rem;font-weight:700;text-decoration:none;">Create Authorization &amp; Order Now →</a>
   </div>`;
   infoWindow.setContent(content);
   infoWindow.open(map, marker);
