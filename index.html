@@ -1041,35 +1041,6 @@ function addCRLMarker(loc, highlight) {
   return marker;
 }
 
-function openStaticInfoWindow(marker, result) {
-  const loc = result.staticData;
-  const type = result.type;
-  const typeName = type === 'labcorp' ? 'LabCorp' : 'Quest Diagnostics';
-  const badge = type === 'labcorp' ? 'LC' : 'QD';
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.name + ' ' + loc.addr)}`;
-  const bookUrl = type === 'labcorp'
-    ? 'https://www.labcorp.com/labs-and-appointments/find-a-patient-service-center'
-    : 'https://www.questdiagnostics.com/content/dam/corporate/restricted/documents/pdfs/patient/my-quest/find-a-lab.html';
-  const content = `<div class="iw">
-    <div class="iw-header">
-      <div class="iw-badge ${type}">${badge}</div>
-      <div>
-        <div class="iw-name">${loc.name}</div>
-        <div class="iw-type">${typeName} · ${loc.state}</div>
-      </div>
-    </div>
-    <div class="iw-rows">
-      <div class="iw-row"><span class="iw-row-icon">🏢</span><span class="iw-row-val">${loc.addr}</span></div>
-    </div>
-    <div class="iw-actions">
-      <a href="${mapsUrl}" target="_blank" class="iw-btn iw-btn-primary">Get Directions</a>
-      <a href="https://portal.dot-physical.net/order" target="_blank" class="iw-btn iw-btn-secondary">Book</a>
-    </div>
-  </div>`;
-  infoWindow.setContent(content);
-  infoWindow.open(map, marker);
-}
-
 function openCRLInfoWindow(marker, loc) {
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.name + ' ' + loc.addr)}`;
   const content = `<div class="iw">
