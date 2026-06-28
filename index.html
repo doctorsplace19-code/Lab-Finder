@@ -1052,9 +1052,18 @@ function openCRLInfoWindow(marker, loc) {
       </div>
     </div>
     <div class="iw-rows">
-      <div class="iw-row"><span class="iw-row-icon">🏢</span><span class="iw-row-val">${loc.addr}</span></div>
-      <div class="iw-row"><span class="iw-row-icon">🕐</span><span class="iw-row-val">${loc.hours}</span></div>
+      <div class="iw-row"><span class="iw-row-icon">📍</span><span class="iw-row-val">${loc.addr}</span></div>
       ${loc.phone !== 'N/A' ? `<div class="iw-row"><span class="iw-row-icon">📞</span><span class="iw-row-val"><a href="tel:${loc.phone}">${loc.phone}</a></span></div>` : ''}
+    </div>
+    <div style="font-size:.74rem;font-weight:700;color:#1a1d23;margin-bottom:6px;">Services Available:</div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:14px;">
+      <div style="font-size:.76rem;color:#374151;">✓ DOT / Non-DOT Urine Drug Test</div>
+      <div style="font-size:.76rem;color:#374151;">✓ MMR Titers</div>
+      <div style="font-size:.76rem;color:#374151;">✓ Hepatitis B</div>
+      <div style="font-size:.76rem;color:#374151;">✓ Respirator Fit Test</div>
+      <div style="font-size:.76rem;color:#374151;">✓ DOT Physical</div>
+      <div style="font-size:.76rem;color:#374151;">✓ Pre-Employment Physical</div>
+      <div style="font-size:.76rem;color:#374151;">✓ Return to Duty</div>
     </div>
     <div class="iw-actions">
       <a href="${mapsUrl}" target="_blank" class="iw-btn iw-btn-primary">Get Directions</a>
